@@ -11,3 +11,5 @@ missing
 
 # Prevent accidental additions of release archives
 *.tar.gz
+
+/*.[oa]
