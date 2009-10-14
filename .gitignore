@@ -8,3 +8,5 @@ depcomp
 install-sh
 ltmain.sh
 missing
+
+/*.[oa]
