@@ -18,8 +18,9 @@
 		<Configuration
 			Name="Debug|Win32"
 			ConfigurationType="4"
-			InheritedPropertySheets="..\..\MSVC\Common.vsprops;..\..\MSVC\Debug.vsprops"
+			InheritedPropertySheets="..\Common.vsprops;..\LIB.vsprops;..\Debug.vsprops"
 			CharacterSet="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -43,9 +44,6 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -78,9 +76,9 @@
 		<Configuration
 			Name="Release|Win32"
 			ConfigurationType="4"
-			InheritedPropertySheets="..\..\MSVC\Common.vsprops;..\..\MSVC\Release.vsprops"
+			InheritedPropertySheets="..\Common.vsprops;..\LIB.vsprops;..\Release.vsprops"
 			CharacterSet="1"
-			WholeProgramOptimization="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -101,9 +99,6 @@
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;SQLITE_OMIT_AUTHORIZATION;SQLITE_OMIT_AUTOVACUUM;SQLITE_OMIT_COMPLETE;SQLITE_OMIT_BLOB_LITERAL;SQLITE_OMIT_COMPOUND_SELECT;SQLITE_OMIT_CONFLICT_CLAUSE;SQLITE_OMIT_DATETIME_FUNCS;SQLITE_OMIT_EXPLAIN;SQLITE_OMIT_INTEGRITY_CHECK;SQLITE_OMIT_PAGER_PRAGMAS;SQLITE_OMIT_PROGRESS_CALLBACK;SQLITE_OMIT_SCHEMA_PRAGMAS;SQLITE_OMIT_SCHEMA_VERSION_PRAGMAS;SQLITE_OMIT_TCL_VARIABLE;SQLITE_OMIT_LOAD_EXTENSION"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
