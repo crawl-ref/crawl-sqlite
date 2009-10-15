@@ -13,3 +13,4 @@ missing
 *.tar.gz
 
 /*.[oa]
+*.vcproj.*.user
