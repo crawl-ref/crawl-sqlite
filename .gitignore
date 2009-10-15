@@ -10,3 +10,4 @@ ltmain.sh
 missing
 
 /*.[oa]
+*.vcproj.*.user
