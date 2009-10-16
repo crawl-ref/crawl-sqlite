@@ -4,15 +4,23 @@ ifneq ($(findstring $(MAKEFLAGS),s),s)
 ifndef V
         QUIET_CC       = @echo '   ' CC $@;
         QUIET_AR       = @echo '   ' AR $@;
+        QUIET_INSTALL  = @echo '   ' INSTALL $<;
         export V
 endif
 endif
 
 LIBSQL = libsqlite3.a
 AR    ?= ar rcu
+ifeq ($(AR),ar)
+AR := ar rcu
+endif
 CC    ?= gcc
 RANLIB = ranlib
 RM    ?= rm -f
+
+prefix ?= /usr/local
+libdir := $(prefix)/lib
+includedir := $(prefix)/include
 
 # Omit SQLite features we don't need.
 CFLAGS ?= -O2
@@ -35,7 +43,21 @@ CFLAGS +=-DSQLITE_OMIT_AUTHORIZATION \
 		 -DSQLITE_THREADSAFE=0 \
 		 -w
 
+.PHONY: install
+
 all: $(LIBSQL)
+
+$(includedir)/%.h: %.h
+	-@if [ ! -d $(includedir)  ]; then mkdir -p $(includedir); fi
+	$(QUIET_INSTALL)cp $< $@
+	@chmod 0644 $@
+
+$(libdir)/%.a: %.a
+	-@if [ ! -d $(libdir)  ]; then mkdir -p $(libdir); fi
+	$(QUIET_INSTALL)cp $< $@
+	@chmod 0755 $@
+
+install: $(includedir)/sqlite3.h $(libdir)/libsqlite3.a
 
 clean:
 	$(RM) *.o *.a
