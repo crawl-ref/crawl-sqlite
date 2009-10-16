@@ -10,10 +10,7 @@ endif
 endif
 
 LIBSQL = libsqlite3.a
-AR    ?= ar rcu
-ifeq ($(AR),ar)
-AR := ar rcu
-endif
+AR    ?= ar
 CC    ?= gcc
 RANLIB = ranlib
 RM    ?= rm -f
@@ -51,7 +48,7 @@ $(includedir)/%.h: %.h
 	-@if [ ! -d $(includedir)  ]; then mkdir -p $(includedir); fi
 	$(QUIET_INSTALL)cp $< $@
 	@chmod 0644 $@
-	
+
 $(libdir)/%.a: %.a
 	-@if [ ! -d $(libdir)  ]; then mkdir -p $(libdir); fi
 	$(QUIET_INSTALL)cp $< $@
@@ -62,8 +59,10 @@ install: $(includedir)/sqlite3.h $(libdir)/libsqlite3.a
 clean:
 	$(RM) *.o *.a
 
+distclean: clean
+
 $(LIBSQL): sqlite3.o
-	$(QUIET_AR)$(AR) $@ $^
+	$(QUIET_AR)$(AR) rcu $@ $^
 	@$(RANLIB) $@
 
 %.o: %.c
