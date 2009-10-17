@@ -4,6 +4,7 @@ ifneq ($(findstring $(MAKEFLAGS),s),s)
 ifndef V
         QUIET_CC       = @echo '   ' CC $@;
         QUIET_AR       = @echo '   ' AR $@;
+        QUIET_RANLIB   = @echo '   ' RANLIB $@;
         QUIET_INSTALL  = @echo '   ' INSTALL $<;
         export V
 endif
@@ -12,7 +13,7 @@ endif
 LIBSQL = libsqlite3.a
 AR    ?= ar
 CC    ?= gcc
-RANLIB = ranlib
+RANLIB?= ranlib
 RM    ?= rm -f
 
 prefix ?= /usr/local
@@ -63,7 +64,7 @@ distclean: clean
 
 $(LIBSQL): sqlite3.o
 	$(QUIET_AR)$(AR) rcu $@ $^
-	@$(RANLIB) $@
+	$(QUIET_RANLIB)$(RANLIB) $@
 
 %.o: %.c
 	$(QUIET_CC)$(CC) $(CFLAGS) -o $@ -c $<
