@@ -58,7 +58,7 @@ $(libdir)/%.a: %.a
 install: $(includedir)/sqlite3.h $(libdir)/libsqlite3.a
 
 clean:
-	$(RM) $(OBJECTS) $(LIBSQL)
+	$(RM) sqlite3.o $(LIBSQL)
 
 distclean: clean
 
