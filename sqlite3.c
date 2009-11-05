@@ -21875,7 +21875,9 @@ static int sqliteErrorFromPosixError(int posixError, int sqliteIOErr) {
     return SQLITE_OK;
     
   case EAGAIN:
+#ifdef ETIMEDOUT
   case ETIMEDOUT:
+#endif
   case EBUSY:
   case EINTR:
   case ENOLCK:  
@@ -21911,11 +21913,15 @@ static int sqliteErrorFromPosixError(int posixError, int sqliteIOErr) {
   case EIO:
   case EBADF:
   case EINVAL:
+#ifdef ENOTCONN
   case ENOTCONN:
+#endif
   case ENODEV:
   case ENXIO:
   case ENOENT:
+#ifdef ESTALE
   case ESTALE:
+#endif
   case ENOSYS:
     /* these should force the client to close the file and reconnect */
     
