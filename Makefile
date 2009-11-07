@@ -58,7 +58,7 @@ $(libdir)/%.a: %.a
 install: $(includedir)/sqlite3.h $(libdir)/libsqlite3.a
 
 clean:
-	$(RM) sqlite3.o $(LIBSQL)
+	$(RM) sqlite3.o $(LIBSQL) .cflags
 
 distclean: clean
 
@@ -66,5 +66,16 @@ $(LIBSQL): sqlite3.o
 	$(QUIET_AR)$(AR) rcu $@ $^
 	$(QUIET_RANLIB)$(RANLIB) $@
 
-%.o: %.c
+%.o: %.c .cflags
 	$(QUIET_CC)$(CC) $(CFLAGS) -o $@ -c $<
+
+TRACK_CFLAGS = $(subst ','\'',$(CC) $(CFLAGS))
+
+.cflags: .force-cflags
+	@FLAGS='$(TRACK_CFLAGS)'; \
+    if test x"$$FLAGS" != x"`cat .cflags 2>/dev/null`" ; then \
+        echo "    * rebuilding sqlite: new build flags or prefix"; \
+        echo "$$FLAGS" > .cflags; \
+    fi
+
+.PHONY: .force-cflags
