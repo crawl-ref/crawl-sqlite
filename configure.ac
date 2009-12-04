@@ -8,7 +8,7 @@
 #
 
 AC_PREREQ(2.61)
-AC_INIT(sqlite, 3.6.19, http://www.sqlite.org)
+AC_INIT(sqlite, 3.6.20, http://www.sqlite.org)
 AC_CONFIG_SRCDIR([sqlite3.c])
 
 # Use automake.
