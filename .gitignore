@@ -8,3 +8,6 @@ depcomp
 install-sh
 ltmain.sh
 missing
+
+# Prevent accidental additions of release archives
+*.tar.gz
