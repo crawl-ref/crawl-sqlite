@@ -12,5 +12,6 @@ missing
 # Prevent accidental additions of release archives
 *.tar.gz
 
+.cflags
 /*.[oa]
 *.vcproj.*.user
