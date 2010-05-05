@@ -65,6 +65,7 @@ clean:
 distclean: clean
 
 $(LIBSQL): sqlite3.o
+	@$(RM) $@
 	$(QUIET_AR)$(AR) rcu $@ $^
 	$(QUIET_RANLIB)$(RANLIB) $@
 
