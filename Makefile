@@ -39,6 +39,9 @@ CFLAGS +=-DSQLITE_OMIT_AUTHORIZATION \
 		 -DSQLITE_OMIT_LOAD_EXTENSION \
 		 -DSQLITE_DEBUG=0 \
 		 -w
+ifeq ($(shell uname -s),Darwin)
+  CFLAGS += -DSQLITE_ENABLE_LOCKING_STYLE=0
+endif
 
 .PHONY: install
 
